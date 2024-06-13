@@ -21,7 +21,7 @@ public class FileAppendProducer {
 
         Properties props = new Properties();
         // bootstrap.servers, key.serializer.class, value.serializer.class
-        props.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "13.124.30.1:9092");
+        props.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "3.34.141.239:9092");
         props.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
         props.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
 
@@ -32,7 +32,7 @@ public class FileAppendProducer {
 
         File file = new File("C:\\Users\\LDCC\\IdeaProjects\\KafkaProj-01\\practice\\src\\main\\resources\\pizza_append.txt");
         EventHandler eventHandler = new FileEventHandler(kafkaProducer, topicName, sync);
-        FileEventSource fileEventSource = new FileEventSource(1000, file, eventHandler);
+        FileEventSource fileEventSource = new FileEventSource(100, file, eventHandler);
         Thread fileEventSourceThread = new Thread(fileEventSource);
         fileEventSourceThread.start();
 
